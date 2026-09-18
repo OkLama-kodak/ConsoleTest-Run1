@@ -18,7 +18,7 @@ public class ConsoleMenu {
                     System.out.println("\n -> Starting a new game...");
                     break;
                 case 2:
-                    System.out.println("\n -> Loading settings...");
+                    System.out.println("\n -> Loa ding settings...");
                     break;
                 case 3:
                     System.out.println("\n -> Displaying leaderboard...");

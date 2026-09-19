@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Console Test Run"
 include(":app")
+include(":consolet")

@@ -28,13 +28,13 @@ val dummySourceSet = DummySourceSet(
 extensions.add("sourceSets", DummySourceSetContainer(dummySourceSet))
 
 android {
-    namespace = "com.example.consoletestrun"
+    namespace = "com.example.consolet"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.consoletestrun"
+        applicationId = "com.example.consolet"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
@@ -57,10 +57,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.core.ktx)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)

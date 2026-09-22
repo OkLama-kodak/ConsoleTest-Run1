@@ -7,7 +7,6 @@ public class Cas {
 
         System.out.println("Welcome to Buzzers\n");
 
-        // Fixed: Changed from (choice != 3) to (choice != 4) so 3 can run
         while (choice != 4) {
             System.out.println("--- MENU ---");
             System.out.println("1. See task list");
@@ -16,16 +15,15 @@ public class Cas {
             System.out.println("4. Leave");
             System.out.print("Enter your choice: ");
 
-            // Read the user's menu choice
-            if (scanner.hasNextInt()) {
-                choice = scanner.nextInt();
-            } else {
-                System.out.println("Invalid input. Please enter a number.\n");
-                scanner.next(); // Clear invalid input
+            String input = scanner.nextLine().trim();
+
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("\nInvalid input. Please enter a number.\n");
                 continue;
             }
 
-            // Handle the option selected by the user
             switch (choice) {
                 case 1:
                     System.out.println("\n--- TASK LIST ---");

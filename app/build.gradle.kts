@@ -20,6 +20,7 @@ extensionsMap.remove("sourceSets")
 val dummySourceSet = DummySourceSet(
     files(
         layout.buildDirectory.dir("intermediates/javac/debug/compileDebugJavaWithJavac/classes"),
+        layout.buildDirectory.dir("intermediates/javac/debug/classes"),
         layout.buildDirectory.dir("tmp/kotlin-classes/debug"),
         provider { configurations.named("debugRuntimeClasspath").get() }
     ),
@@ -77,6 +78,7 @@ tasks.addRule("Pattern: <ClassName>.main()") {
             mainClass.set(className)
             classpath = files(
                 layout.buildDirectory.dir("intermediates/javac/debug/compileDebugJavaWithJavac/classes"),
+                layout.buildDirectory.dir("intermediates/javac/debug/classes"),
                 layout.buildDirectory.dir("tmp/kotlin-classes/debug"),
                 provider { configurations.named("debugRuntimeClasspath").get() }
             )

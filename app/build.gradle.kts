@@ -80,8 +80,7 @@ tasks.addRule("Pattern: <ClassName>.main()") {
                 layout.buildDirectory.dir("tmp/kotlin-classes/debug"),
                 provider { configurations.named("debugRuntimeClasspath").get() }
             )
-            tasks.findByName("compileDebugJavaWithJavac")?.let { dependsOn(it) }
-            tasks.findByName("compileDebugKotlin")?.let { dependsOn(it) }
+            dependsOn(tasks.matching { it.name == "compileDebugJavaWithJavac" || it.name == "compileDebugKotlin" })
             standardInput = System.`in`
         }
     }

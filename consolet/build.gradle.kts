@@ -74,10 +74,18 @@ tasks.addRule("Pattern: <ClassName>.main()") {
             mainClass.set(className)
             classpath = files(
                 layout.buildDirectory.dir("intermediates/javac/debug/compileDebugJavaWithJavac/classes"),
+                layout.buildDirectory.dir("intermediates/javac/debug/classes"),
                 layout.buildDirectory.dir("tmp/kotlin-classes/debug"),
+                layout.buildDirectory.dir("intermediates/javac/debugUnitTest/compileDebugUnitTestJavaWithJavac/classes"),
+                layout.buildDirectory.dir("tmp/kotlin-classes/debugUnitTest"),
                 provider { configurations.named("debugRuntimeClasspath").get() }
             )
-            dependsOn(tasks.matching { it.name == "compileDebugJavaWithJavac" || it.name == "compileDebugKotlin" })
+            dependsOn(tasks.matching {
+                it.name == "compileDebugSources" ||
+                it.name == "compileDebugUnitTestSources" ||
+                it.name == "compileDebugJavaWithJavac" ||
+                it.name == "compileDebugKotlin"
+            })
             standardInput = System.`in`
         }
     }

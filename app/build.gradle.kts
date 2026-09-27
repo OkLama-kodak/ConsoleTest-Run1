@@ -22,6 +22,11 @@ val dummySourceSet = DummySourceSet(
         layout.buildDirectory.dir("intermediates/javac/debug/compileDebugJavaWithJavac/classes"),
         layout.buildDirectory.dir("intermediates/javac/debug/classes"),
         layout.buildDirectory.dir("tmp/kotlin-classes/debug"),
+        layout.buildDirectory.dir("intermediates/kotlin-classes/debug"),
+        layout.buildDirectory.dir("intermediates/javac/debugUnitTest/compileDebugUnitTestJavaWithJavac/classes"),
+        layout.buildDirectory.dir("intermediates/javac/debugUnitTest/classes"),
+        layout.buildDirectory.dir("tmp/kotlin-classes/debugUnitTest"),
+        layout.buildDirectory.dir("intermediates/kotlin-classes/debugUnitTest"),
         provider { configurations.named("debugRuntimeClasspath").get() }
     ),
     DummyOutput(layout.buildDirectory.dir("processed_res/debug/out").get().asFile)
@@ -80,11 +85,21 @@ tasks.addRule("Pattern: <ClassName>.main()") {
                 layout.buildDirectory.dir("intermediates/javac/debug/compileDebugJavaWithJavac/classes"),
                 layout.buildDirectory.dir("intermediates/javac/debug/classes"),
                 layout.buildDirectory.dir("tmp/kotlin-classes/debug"),
+                layout.buildDirectory.dir("intermediates/kotlin-classes/debug"),
                 layout.buildDirectory.dir("intermediates/javac/debugUnitTest/compileDebugUnitTestJavaWithJavac/classes"),
+                layout.buildDirectory.dir("intermediates/javac/debugUnitTest/classes"),
                 layout.buildDirectory.dir("tmp/kotlin-classes/debugUnitTest"),
+                layout.buildDirectory.dir("intermediates/kotlin-classes/debugUnitTest"),
                 provider { configurations.named("debugRuntimeClasspath").get() }
             )
-            dependsOn("compileDebugJavaWithJavac")
+            dependsOn(tasks.matching {
+                it.name == "compileDebugSources" ||
+                it.name == "compileDebugUnitTestSources" ||
+                it.name == "compileDebugJavaWithJavac" ||
+                it.name == "compileDebugKotlin" ||
+                it.name == "compileDebugUnitTestJavaWithJavac" ||
+                it.name == "compileDebugUnitTestKotlin"
+            })
             standardInput = System.`in`
         }
     }
